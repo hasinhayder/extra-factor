@@ -64,9 +64,15 @@ class ExtraFactor {
 
         $user = get_user_by('login', $username);
 
+        //if not user found then try to find it as email
+        if (!$user) {
+            $user = get_user_by('email', $username);
+        }
+
         if (!$user) {
             wp_die();
         }
+
 
         $email = $user->user_email;
         $code = apply_filters('extra_factor_generate_code', rand(1000, 9999));
