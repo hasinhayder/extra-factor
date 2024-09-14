@@ -64,7 +64,7 @@ class ExtraFactor {
 
         $user = get_user_by('login', $username);
 
-        //if not user found then try to find it as email
+        //if user is not found then try to find it as email
         if (!$user) {
             $user = get_user_by('email', $username);
         }
