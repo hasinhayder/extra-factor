@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: LWHH Extra Factor
+ * Plugin Name: Extra Factor
  * Description: A plugin that enhances the WordPress login process by adding an extra layer of security through a two-factor authentication mechanism. Users will receive a unique code via email that must be entered to complete the login process, ensuring that only authorized users can access their accounts.
  * Version: 1.0
  * Author: Hasin Hayder
