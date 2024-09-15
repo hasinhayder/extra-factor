@@ -62,17 +62,11 @@ class ExtraFactor {
             wp_die();
         }
 
-        $user = get_user_by('login', $username);
-
-        //if user is not found then try to find it as email
-        if (!$user) {
-            $user = get_user_by('email', $username);
-        }
+        $user = get_user_by('login', $username) ?: get_user_by('email', $username);
 
         if (!$user) {
             wp_die();
         }
-
 
         $email = $user->user_email;
         $code = apply_filters('extra_factor_generate_code', rand(1000, 9999));
@@ -82,7 +76,6 @@ class ExtraFactor {
 
         $last_sent = get_user_meta($user->ID, self::META_LAST_SENT, true);
         $current_time = current_time('timestamp');
-
         $timeout = apply_filters('extra_factor_timeout', self::EXTRA_FACTOR_TIMEOUT);
 
         if ($last_sent && ($current_time - $last_sent < $timeout)) {
