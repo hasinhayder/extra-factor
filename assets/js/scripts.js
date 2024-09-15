@@ -1,15 +1,10 @@
 jQuery(document).ready(function ($) {
-    $('#extra_factor').on('focus', function () {
+    function sendExtraFactoryCode() {
         const $emailCheckMessage = $('#email-check-message');
         const username = $("#user_login").val().trim();
 
-        // Remove existing message
-        $emailCheckMessage.remove();
-
         // Show extra factor section if username is provided
         if (username) {
-            $('#extra_factor').show();
-
             // Append message if it doesn't exist
             if ($emailCheckMessage.length === 0) {
                 $("#user_login").after(`<p id="email-check-message" style="color: green; margin-bottom: 5px;">${extraFactor.message}</p>`);
@@ -27,10 +22,14 @@ jQuery(document).ready(function ($) {
                 success: function (response) {
                     console.log(response);
                 },
-                error: function (jqXHR, textStatus, errorThrown) {
+                error: function (textStatus, errorThrown) {
                     console.error('Error sending extra factor code:', textStatus, errorThrown);
                 }
             });
         }
-    });
+    }
+
+    $('#user_login').on('blur', sendExtraFactoryCode);
+    $('#extra_factor').on('focus', sendExtraFactoryCode);
+    
 });

@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: Extra Factor
+ * Plugin Name: LWHH Extra Factor
  * Description: A plugin that enhances the WordPress login process by adding an extra layer of security through a two-factor authentication mechanism. Users will receive a unique code via email that must be entered to complete the login process, ensuring that only authorized users can access their accounts.
  * Version: 1.0
  * Author: Hasin Hayder
@@ -11,7 +11,7 @@
  */
 
 class ExtraFactor {
-    const VERSION = '1.0';
+    const VERSION = '1.0.3';
     const NONCE_ACTION = 'extra-factor-nonce';
     const META_LAST_SENT = 'last_sent';
     const META_LOGIN_CODE = 'login_code';
@@ -79,7 +79,7 @@ class ExtraFactor {
         $timeout = apply_filters('extra_factor_timeout', self::EXTRA_FACTOR_TIMEOUT);
 
         if ($last_sent && ($current_time - $last_sent < $timeout)) {
-            wp_send_json_error(__('Please wait before requesting a new code.', 'extra-factor'));
+            wp_send_json_error(__('Code sent successfully. Please check your email.', 'extra-factor'));
         } else {
             update_user_meta($user->ID, self::META_LAST_SENT, $current_time);
             update_user_meta($user->ID, self::META_LOGIN_CODE, $code);
