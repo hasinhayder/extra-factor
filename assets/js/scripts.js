@@ -1,11 +1,7 @@
 jQuery(document).ready(function ($) {
-    $('#user_login').on('focus', function () {
-        $('#extra_factor').hide();
-        $('#email-check-message').remove();
-    });
-    $('#user_login').on('blur', function () {
+    $('#extra_factor').on('focus', function () {
         const $emailCheckMessage = $('#email-check-message');
-        const username = $(this).val().trim();
+        const username = $("#user_login").val().trim();
 
         // Remove existing message
         $emailCheckMessage.remove();
@@ -16,7 +12,7 @@ jQuery(document).ready(function ($) {
 
             // Append message if it doesn't exist
             if ($emailCheckMessage.length === 0) {
-                $(this).after(`<p id="email-check-message" style="color: green; margin-bottom: 5px;">${extraFactor.message}</p>`);
+                $("#user_login").after(`<p id="email-check-message" style="color: green; margin-bottom: 5px;">${extraFactor.message}</p>`);
             }
 
             // Send AJAX request

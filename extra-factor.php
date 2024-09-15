@@ -37,7 +37,7 @@ class ExtraFactor {
 
     public function add_extra_factor_input() {
         ?>
-        <p id="extra_factor" style="display: none;">
+        <p id="extra_factor_container">
             <label for="extra_factor"><?php _e('Email Code', 'extra-factor'); ?></label>
             <input type="text" name="extra_factor" id="extra_factor" class="input" value="" size="20">
         </p>
