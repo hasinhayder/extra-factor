@@ -102,7 +102,7 @@ class ExtraFactor {
         }
 
         $extra_factor = sanitize_text_field($_POST['extra_factor']);
-        $user = get_user_by('login', $username);
+        $user = get_user_by('login', $username) ?: get_user_by('email', $username);
         $login_code = get_user_meta($user->ID, self::META_LOGIN_CODE, true);
 
         if ($extra_factor !== $login_code) {
